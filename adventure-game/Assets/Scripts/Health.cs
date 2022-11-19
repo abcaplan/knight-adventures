@@ -1,25 +1,47 @@
 using UnityEngine;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
+    [Header ("Health")]
     [SerializeField] private float startingHealth;
-    private float currentHealth;
+    public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
+
+    [Header ("iFrames")]
+    [SerializeField] private float immuneDuration;
+    [SerializeField] private int flashes;
+    private SpriteRenderer spriteRend;
 
     private void Awake() {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
+        spriteRend = GetComponent<SpriteRenderer>();
     }
 
-    // Currently the game is made to oneshot the player (it can be updated for health if needed)
     public void TakeDamage(float _damage) {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
-        if (!dead) {
-            anim.SetTrigger("dead");
-            GetComponent<PlayerMovement>().enabled = false;
-            dead = true;
-        }        
+        if (currentHealth > 0) {
+            anim.SetTrigger("hurt");
+            StartCoroutine(Immunity());
+        } else {        
+            if (!dead) {
+                anim.SetTrigger("dead");
+                GetComponent<PlayerMovement>().enabled = false;
+                dead = true;
+            }
+        }
+    }
+    private IEnumerator Immunity() {
+        Physics2D.IgnoreLayerCollision(8, 9, true);
+        for (int i = 0; i < flashes; i++) {
+            spriteRend.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(immuneDuration / (flashes * 2));
+            spriteRend.color = Color.white;
+            yield return new WaitForSeconds(immuneDuration / (flashes * 2));
+        }
+        Physics2D.IgnoreLayerCollision(8, 9, false);
     }
 }
