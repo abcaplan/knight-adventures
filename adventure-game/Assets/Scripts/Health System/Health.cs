@@ -14,6 +14,9 @@ public class Health : MonoBehaviour
     [SerializeField] private int flashes;
     private SpriteRenderer spriteRend;
 
+    [Header ("Components")]
+    [SerializeField] private Behaviour[] components;
+
     private void Awake() {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
@@ -29,7 +32,11 @@ public class Health : MonoBehaviour
         } else {        
             if (!dead) {
                 anim.SetTrigger("dead");
-                GetComponent<PlayerMovement>().enabled = false;
+
+                foreach (Behaviour component in components){
+                    component.enabled = false;
+                }
+
                 dead = true;
             }
         }
@@ -43,5 +50,9 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(immuneDuration / (flashes * 2));
         }
         Physics2D.IgnoreLayerCollision(8, 9, false);
+    }
+
+    private void Deactivate() {
+        gameObject.SetActive(false);
     }
 }
