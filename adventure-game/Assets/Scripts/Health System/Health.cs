@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
 
     [Header ("Components")]
     [SerializeField] private Behaviour[] components;
+    private bool immunity;
 
     private void Awake() {
         currentHealth = startingHealth;
@@ -24,6 +25,10 @@ public class Health : MonoBehaviour
     }
 
     public void TakeDamage(float _damage) {
+        if (immunity) {
+            return;
+        }
+
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
         if (currentHealth > 0) {
@@ -42,6 +47,7 @@ public class Health : MonoBehaviour
         }
     }
     private IEnumerator Immunity() {
+        immunity = true;
         Physics2D.IgnoreLayerCollision(8, 9, true);
         for (int i = 0; i < flashes; i++) {
             spriteRend.color = new Color(1, 0, 0, 0.5f);
@@ -50,6 +56,7 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(immuneDuration / (flashes * 2));
         }
         Physics2D.IgnoreLayerCollision(8, 9, false);
+        immunity = false;
     }
 
     private void Deactivate() {
