@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6936549949501317921}
   - component: {fileID: 2620302663963101109}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7244087318220665785}
   - component: {fileID: 3153155879724405412}
   - component: {fileID: 2386319885885747051}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spikes
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ Transform:
   - {fileID: 6936549949501317921}
   - {fileID: 2833206438934102798}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3153155879724405412
 MonoBehaviour:
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2833206438934102798}
   - component: {fileID: 8819578020496989692}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5757505878036446071}
   - component: {fileID: 1032539846080299638}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
