@@ -174,8 +174,8 @@ MonoBehaviour:
   speed: 10
   jumpPower: 20
   coyoteTime: 0.25
-  wallJumpX: 0
-  wallJumpY: 0
+  wallJumpX: 3000
+  wallJumpY: 1000
   extraJumps: 0
   groundLayer:
     serializedVersion: 2

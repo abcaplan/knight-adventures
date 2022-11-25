@@ -41,12 +41,11 @@ public class Health : MonoBehaviour
             SoundManager.instance.PlaySound(hurtSound);
         } else {        
             if (!dead) {
-                anim.SetTrigger("dead");
-
                 foreach (Behaviour component in components){
                     component.enabled = false;
                 }
-
+                anim.SetBool("grounded", true);
+                anim.SetTrigger("dead");
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound);
             }
