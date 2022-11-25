@@ -3,9 +3,11 @@ using System.Collections;
 
 public class FireTrap : MonoBehaviour
 {
+    [Header ("Attributes")]
     [SerializeField] private float damage;
     [SerializeField] private float activationDelay;
     [SerializeField] private float activeTime;
+
     private Animator anim;
     private SpriteRenderer spriteRend;
 
@@ -13,6 +15,9 @@ public class FireTrap : MonoBehaviour
     private bool activated;
 
     private Health playerHealth;
+
+    [Header ("Audio")]
+    [SerializeField] private AudioClip fireTrapSound;
 
     private void Awake() {
         anim = GetComponent<Animator>();
@@ -50,6 +55,7 @@ public class FireTrap : MonoBehaviour
         spriteRend.color = Color.red;
 
         yield return new WaitForSeconds(activationDelay);
+        SoundManager.instance.PlaySound(fireTrapSound);
         spriteRend.color = Color.white;
         activated = true;
         anim.SetBool("activated", true);

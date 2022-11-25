@@ -154,6 +154,8 @@ MonoBehaviour:
   components:
   - {fileID: 3425985639479009083}
   - {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 5c32a6eeb0fe73f4bb4ab5ac3c93c182, type: 3}
+  hurtSound: {fileID: 8300000, guid: 8e980ce3866458d488cf4982a8b3508a, type: 3}
 --- !u!114 &3425985639479009083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +188,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  fireballSound: {fileID: 8300000, guid: 8115a86a60280ad4796bd678631f76b4, type: 3}
 --- !u!114 &1007157193858832672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +264,7 @@ Transform:
   - {fileID: 3425985639479009080}
   - {fileID: 6391502353624217873}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6391502353624217870
 GameObject:

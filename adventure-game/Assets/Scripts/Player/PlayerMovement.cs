@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header ("Player Stats")]
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
+
+    [Header ("Layers")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
+
+    [Header ("Audio")]
+    [SerializeField] private AudioClip jumpSound;
 
     private void Awake() {
         // References
@@ -47,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space)) {
                 Jump();
+                if (Input.GetKeyDown(KeyCode.Space) && isGrounded()) {
+                    SoundManager.instance.PlaySound(jumpSound);
+                }
             }
 
         } else {

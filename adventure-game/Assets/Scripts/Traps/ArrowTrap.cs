@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class ArrowTrap : MonoBehaviour
 {
+    [Header ("Attributes")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] arrows;
+
+    [Header ("Audio")]
+    [SerializeField] private AudioClip arrowTrapSound;
+
+
     private float cooldownTimer;
 
     private void Update() {
@@ -17,6 +23,8 @@ public class ArrowTrap : MonoBehaviour
 
     private void Attack() {
         cooldownTimer = 0;
+
+        SoundManager.instance.PlaySound(arrowTrapSound);
 
         arrows[FindArrow()].transform.position = firePoint.position;
         arrows[FindArrow()].GetComponent<EnemyProjectile>().ActivateProjectile();

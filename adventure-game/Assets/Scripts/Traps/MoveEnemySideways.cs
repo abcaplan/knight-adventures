@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MoveEnemySideways : MonoBehaviour
 {
+    [Header ("Enemy Attributes")]
     [SerializeField] private float movementDistance;
     [SerializeField] private float speed;
     [SerializeField] private float damage;

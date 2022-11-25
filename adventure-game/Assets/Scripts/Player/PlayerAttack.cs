@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [Header ("Attributes")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
@@ -9,10 +10,9 @@ public class PlayerAttack : MonoBehaviour
     private PlayerMovement playerMovement;
     public float cooldownTimer = Mathf.Infinity;
 
-    // For melee attack and enemies added
-    public LayerMask enemy;
-    public Transform attackPos;
-    public float attackRange;
+    [Header ("Audio")]
+    [SerializeField] private AudioClip fireballSound;
+    // [SerializeField] private AudioClip swordSound;
 
     private void Awake() {
         anim = GetComponent<Animator>();
@@ -21,13 +21,14 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update() {
         if (Input.GetKey(KeyCode.L) && cooldownTimer > attackCooldown && playerMovement.canAttack()) {
-            Attack();
+            FireballAttack();
         }
         cooldownTimer += Time.deltaTime;
     }
 
-    private void Attack() {
-        anim.SetTrigger("attack");
+    private void FireballAttack() {
+        SoundManager.instance.PlaySound(fireballSound);
+        anim.SetTrigger("fireballAttack");
         cooldownTimer = 0;
         
         fireballs[FindFireball()].transform.position = firePoint.position;

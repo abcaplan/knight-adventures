@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
+    [Header ("Fireball Attributes")]
     [SerializeField] private float speed;
     private float direction;
     private bool hit;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MeleeEnemy : MonoBehaviour
 {
-    [Header ("Attack Parameters")]
+    [Header ("Attack Attributes")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private int damage;
     [SerializeField] private float range;
@@ -16,6 +16,9 @@ public class MeleeEnemy : MonoBehaviour
     private float cooldownTimer = Mathf.Infinity;
     private Health playerHealth;
 
+    [Header ("Audio")]
+    [SerializeField] private AudioClip swordSound;
+
     private Animator anim;
     private EnemyPatrol enemyPatrol;
 
@@ -28,9 +31,10 @@ public class MeleeEnemy : MonoBehaviour
         cooldownTimer += Time.deltaTime;
 
         if (CanSeePlayer()) {
-            if (cooldownTimer >= attackCooldown) {
+            if (cooldownTimer >= attackCooldown && playerHealth.currentHealth > 0) {
                 cooldownTimer = 0;
                 anim.SetTrigger("meleeAttack");
+                SoundManager.instance.PlaySound(swordSound);
             }
         }
         

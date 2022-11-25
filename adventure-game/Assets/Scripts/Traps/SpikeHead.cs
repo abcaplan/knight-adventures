@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpikeHead : EnemyDamage
 {
-    [Header ("Spike Head Attributes")]
+    [Header ("Attributes")]
     [SerializeField] private float speed;
     [SerializeField] private float range;
     [SerializeField] private float checkDelay;    
@@ -11,6 +11,9 @@ public class SpikeHead : EnemyDamage
     private Vector3[] directions = new Vector3[4];
     private float checkTimer;
     private bool attacking;
+
+    [Header ("Audio")]
+    [SerializeField] private AudioClip impactSound; // Spike Head hits something
 
     private void OnEnable() {
         StopAttack();
@@ -54,6 +57,7 @@ public class SpikeHead : EnemyDamage
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        SoundManager.instance.PlaySound(impactSound);
         base.OnTriggerEnter2D(collision);
         StopAttack();
     }

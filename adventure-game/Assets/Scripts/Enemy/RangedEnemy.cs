@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RangedEnemy : MonoBehaviour
 {
-        [Header ("Attack Parameters")]
+    [Header ("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private int damage;
     [SerializeField] private float range;
@@ -19,6 +19,9 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
     private Health playerHealth;
+
+    [Header ("Fireball Sound")]
+    [SerializeField] private AudioClip fireballSound;
 
     private Animator anim;
     private EnemyPatrol enemyPatrol;
@@ -43,6 +46,7 @@ public class RangedEnemy : MonoBehaviour
         }
     }
     private void FireballAttack() {
+        SoundManager.instance.PlaySound(fireballSound);
         cooldownTimer = 0;
         fireballs[FindFireball()].transform.position = firePoint.position;
         fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile();
