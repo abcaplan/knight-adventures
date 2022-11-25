@@ -173,6 +173,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpPower: 20
+  coyoteTime: 0.25
+  wallJumpX: 0
+  wallJumpY: 0
+  extraJumps: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -303,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04c3e21fc5e06d4da48de9b37eaf587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
 --- !u!1 &8839596234750280708
 GameObject:
   m_ObjectHideFlags: 0

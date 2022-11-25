@@ -6,6 +6,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
 
+    [Header ("Coyote Jump")]
+    [SerializeField] private float coyoteTime; // How much time the player can stay in the air and allow to jump
+    private float coyoteCounter; // How much time passes after player leaves ground/platform
+
+    [Header ("Wall Jump")]
+    [SerializeField] private float wallJumpX; // Horizontal Wall Jump force
+    [SerializeField] private float wallJumpY; // Vertical Wall Jump force
+
+    [Header ("Multiple Jumps")]
+    [SerializeField] private int extraJumps;
+    private int jumpCounter;
+    
     [Header ("Layers")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
@@ -13,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
-    private float wallJumpCooldown;
     private float horizontalInput;
 
     [Header ("Audio")]
@@ -41,42 +52,59 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
 
-        // Wall Jump
-        if (wallJumpCooldown > 0.2f) {
+        // Jump
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Jump();
+        }
+
+        // Adjustable Jump
+        if(Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0) {
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
+        }
+
+        if (onWall()) {
+            body.gravityScale = 0;
+            body.velocity = Vector2.zero;
+        } else {
+            body.gravityScale = 7;
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
-            if (onWall() && !isGrounded()) {
-                body.gravityScale = 0;
-                body.velocity = Vector2.zero;
+            if (isGrounded()) {
+                coyoteCounter = coyoteTime;
+                jumpCounter = extraJumps;
             } else {
-                body.gravityScale = 7;
+                coyoteCounter -= Time.deltaTime;
             }
-
-            if (Input.GetKey(KeyCode.Space)) {
-                Jump();
-                if (Input.GetKeyDown(KeyCode.Space) && isGrounded()) {
-                    SoundManager.instance.PlaySound(jumpSound);
-                }
-            }
-
-        } else {
-            wallJumpCooldown += Time.deltaTime;
         }
     }
 
     private void Jump() {
-        if (isGrounded()) {
-        body.velocity = new Vector2(body.velocity.x, jumpPower);
-        anim.SetTrigger("jump");
-        } else if (onWall() && !isGrounded()) {
-            if (horizontalInput == 0) {
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 10, 0);
-                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        if (coyoteCounter < 0 && !onWall() && jumpCounter <= 0) return;
+
+        SoundManager.instance.PlaySound(jumpSound);
+
+        if (onWall()){
+            WallJump();
+        } else {
+            if (isGrounded()) {
+                body.velocity = new Vector2(body.velocity.x, jumpPower);
             } else {
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 3, 6);
+                if (coyoteCounter > 0) {
+                    body.velocity = new Vector2(body.velocity.x, jumpPower);
+                } else {
+                    if (jumpCounter > 0) {
+                        body.velocity = new Vector2(body.velocity.x, jumpPower);
+                        jumpCounter--;
+                    }
+                }
             }
-            wallJumpCooldown = 0; 
+            // Avoid double jump -> Reset counter
+            coyoteCounter = 0;
         }
+    }
+
+    private void WallJump() {
+        body.AddForce(new Vector2(-Mathf.Sign(transform.localScale.x) * wallJumpX, wallJumpY));
     }
 
     private bool isGrounded() {
