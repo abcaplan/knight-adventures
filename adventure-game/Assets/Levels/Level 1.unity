@@ -4123,6 +4123,14 @@ PrefabInstance:
       propertyPath: hurtSound
       value: 
       objectReference: {fileID: 8300000, guid: 8e980ce3866458d488cf4982a8b3508a, type: 3}
+    - target: {fileID: 1037100713961184967, guid: 84d4020c8c86f2c4fa1443bc8be27317, type: 3}
+      propertyPath: components.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037100713961184967, guid: 84d4020c8c86f2c4fa1443bc8be27317, type: 3}
+      propertyPath: components.Array.data[1]
+      value: 
+      objectReference: {fileID: 1221581292}
     - target: {fileID: 1037100713961184970, guid: 84d4020c8c86f2c4fa1443bc8be27317, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
@@ -4773,6 +4781,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1221581292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1797565180720578935, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
+  m_PrefabInstance: {fileID: 19674816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba811cb5e5076447bc960d2bc1d0e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1222887508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8498,7 +8517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1797565180720578929, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1797565180720578934, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
       propertyPath: m_RootOrder
@@ -8900,7 +8919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6391502353454943100, guid: f13ab0321a778d243836c4edf7d17554, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.61
+      value: 8.77
       objectReference: {fileID: 0}
     - target: {fileID: 6391502353454943100, guid: f13ab0321a778d243836c4edf7d17554, type: 3}
       propertyPath: m_LocalPosition.y

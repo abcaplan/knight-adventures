@@ -45,7 +45,7 @@ public class Health : MonoBehaviour
                 foreach (Behaviour component in components){
                     component.enabled = false;
                 }
-                anim.SetBool("grounded", true);
+                anim.SetBool("grounded", true); // may raise warning in console for non player objects
                 anim.SetTrigger("dead");
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound);

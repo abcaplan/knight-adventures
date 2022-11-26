@@ -10,13 +10,11 @@ public class PlayerRespawn : MonoBehaviour
         playerHealth = GetComponent<Health>();
     }
 
-    private void Respawn() {
+    private void CheckRespawn() {
         transform.position = currentCheckpoint.position;
 
         // Restore player normal attributes
         playerHealth.Respawn();
-
-        // Camera?
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
