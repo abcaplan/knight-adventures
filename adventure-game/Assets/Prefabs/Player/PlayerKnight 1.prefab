@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8839596234248299403}
   - component: {fileID: 8839596234248299392}
   - component: {fileID: 8839596234248299393}
+  - component: {fileID: 7505016356497500816}
   - component: {fileID: 8839596234248299398}
   m_Layer: 8
   m_Name: PlayerKnight 1
@@ -38,7 +39,7 @@ Transform:
   - {fileID: 8839596234750280711}
   - {fileID: 8839596234447393807}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8839596234248299396
 SpriteRenderer:
@@ -210,9 +211,23 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  blocking: 0
   cooldownTimer: Infinity
   fireballSound: {fileID: 8300000, guid: 8115a86a60280ad4796bd678631f76b4, type: 3}
   swordSound: {fileID: 8300000, guid: 671b4c1685f28074c99943ab362ef242, type: 3}
+--- !u!114 &7505016356497500816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8839596234248299400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a8610563dddd544a08f88a9f52c5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointSound: {fileID: 8300000, guid: b997c8e0b880b6642821f34b5671c0fc, type: 3}
 --- !u!114 &8839596234248299398
 MonoBehaviour:
   m_ObjectHideFlags: 0

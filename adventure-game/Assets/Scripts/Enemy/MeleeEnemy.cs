@@ -22,6 +22,11 @@ public class MeleeEnemy : MonoBehaviour
     private Animator anim;
     private EnemyPatrol enemyPatrol;
 
+    /*
+    private PlayerAttack playerAttack;
+    private int parryChance;
+    */
+
     private void Awake() {
         anim = GetComponent<Animator>();
         enemyPatrol = GetComponentInParent<EnemyPatrol>();
@@ -63,6 +68,18 @@ public class MeleeEnemy : MonoBehaviour
     private void DamagePlayer() {
         if (CanSeePlayer()) {
             playerHealth.TakeDamage(damage);
+            /*
+            // When player blocks, there is a 50% chance of blocking the attack
+            if (playerAttack.blocking) {
+                parryChance = Random.Range(1,2);
+                if (parryChance == 1) {
+                    SoundManager.instance.PlaySound(hurtSound);
+                    return;
+                }
+            } else {
+                playerHealth.TakeDamage(damage);
+            }
+            */
         }
     }
 }

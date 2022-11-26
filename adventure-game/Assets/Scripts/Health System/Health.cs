@@ -41,6 +41,7 @@ public class Health : MonoBehaviour
             SoundManager.instance.PlaySound(hurtSound);
         } else {        
             if (!dead) {
+                // Deactivate all component classes
                 foreach (Behaviour component in components){
                     component.enabled = false;
                 }
@@ -51,6 +52,20 @@ public class Health : MonoBehaviour
             }
         }
     }
+
+    public void Respawn() {
+        dead = false;
+        currentHealth = Mathf.Clamp(currentHealth + startingHealth, 0, startingHealth);
+        anim.ResetTrigger("dead");
+        anim.Play("Idle");
+        StartCoroutine(Immunity());
+
+        // Activate all component classes
+        foreach (Behaviour component in components){
+            component.enabled = true;
+        }
+    }
+
     private IEnumerator Immunity() {
         immunity = true;
         Physics2D.IgnoreLayerCollision(8, 9, true);

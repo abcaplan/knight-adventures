@@ -8,6 +8,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
     private bool attacking = false;
+    public bool blocking = false;
     private Animator anim;
     private PlayerMovement playerMovement;
     public float cooldownTimer = Mathf.Infinity;
@@ -22,18 +23,24 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKey(KeyCode.K) && cooldownTimer > attackCooldown && playerMovement.canAttack()) {
-            SwordAttack();
-        } else if (Input.GetKey(KeyCode.L) && cooldownTimer > attackCooldown && playerMovement.canAttack()) {
-            FireballAttack();
+        if (cooldownTimer > attackCooldown && playerMovement.canAttack()) {
+            if (Input.GetKey(KeyCode.J)) {
+                SwordAttack();
+            } else if (Input.GetKey(KeyCode.K)) {
+                FireballAttack();
+            } else if (Input.GetKey(KeyCode.L)) {
+                BlockAttack();
+            }
         }
 
         cooldownTimer += Time.deltaTime;
 
-        // Adjust cooldown for both ranged and melee attacks
+        // Adjust cooldown for ranged attacks, melee attacks and sword blocks
         if (attacking && cooldownTimer >= attackCooldown) {
             cooldownTimer = 0;
             attacking = false;
+
+            // Deactivate sword damage range
             attackArea.SetActive(attacking);
         }
     }
@@ -45,6 +52,14 @@ public class PlayerAttack : MonoBehaviour
         cooldownTimer = 0;
 
         attackArea.SetActive(attacking);
+    }
+
+    private void BlockAttack() {
+        // Incomplete
+        attacking = true;
+        blocking = true;
+        anim.SetTrigger("blockAttack");
+        cooldownTimer = 0;
     }
 
     private void FireballAttack() {
