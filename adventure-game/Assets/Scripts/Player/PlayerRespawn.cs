@@ -11,6 +11,8 @@ public class PlayerRespawn : MonoBehaviour
     }
 
     private void CheckRespawn() {
+        if (currentCheckpoint == null) return;
+
         transform.position = currentCheckpoint.position;
 
         // Restore player normal attributes
