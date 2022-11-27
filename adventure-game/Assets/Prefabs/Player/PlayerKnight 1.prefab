@@ -184,6 +184,9 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  propsLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   jumpSound: {fileID: 8300000, guid: 8de05b102a0661646a879cbdfd245e33, type: 3}
 --- !u!114 &8839596234248299393
 MonoBehaviour:

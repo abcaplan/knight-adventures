@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Enemy
   - Trap
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - Trap
   - Fireball Projectile
-  - 
+  - Props
   - 
   - 
   - 

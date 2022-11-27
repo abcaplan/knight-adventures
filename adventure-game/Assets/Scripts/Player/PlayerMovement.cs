@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [Header ("Layers")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private LayerMask propsLayer;
 
     private Rigidbody2D body;
     private Animator anim;
@@ -108,8 +109,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private bool isGrounded() {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        RaycastHit2D raycastHitGround = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer); // under the player is ground layer
+        RaycastHit2D raycastHitProps = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, propsLayer); // under the player is any prop layer
+        return (raycastHitGround.collider != null) || (raycastHitProps.collider != null);
     }
 
     private bool onWall() {
