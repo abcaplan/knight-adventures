@@ -8,7 +8,7 @@ public class LoadingManager : MonoBehaviour
     private void Update() {
         if(Input.GetKeyDown(KeyCode.F)) {
             // Build level 2
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }

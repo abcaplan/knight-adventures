@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  character: {fileID: 3425985639479009081}
   immuneDuration: 0
   flashes: 0
   components:
