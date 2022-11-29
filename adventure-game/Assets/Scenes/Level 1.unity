@@ -56700,6 +56700,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8839596234248299392, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
+      propertyPath: crouch
+      value: 
+      objectReference: {fileID: 21300000, guid: 852ed71025819974eaee06b652ba82bb, type: 3}
+    - target: {fileID: 8839596234248299392, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
+    - target: {fileID: 8839596234248299392, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
+      propertyPath: crouchedSize.y
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8839596234248299393, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
       propertyPath: fireballs.Array.data[0]
       value: 
@@ -56740,6 +56752,10 @@ PrefabInstance:
       propertyPath: fireballs.Array.data[9]
       value: 
       objectReference: {fileID: 1779311048}
+    - target: {fileID: 8839596234248299396, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
     - target: {fileID: 8839596234248299396, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
       propertyPath: m_Enabled
       value: 1

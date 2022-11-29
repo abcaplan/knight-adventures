@@ -3,8 +3,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header ("Player Stats")]
-    [SerializeField] private float speed;
+    [SerializeField] private float baseSpeed;
     [SerializeField] private float jumpPower;
+    private float horizontalInput;
+    private float currentSpeed;
+
+    [Header ("Collider & Size")]
+    private BoxCollider2D boxCollider;
+    [SerializeField] private Vector2 normalSize;
+    [SerializeField] private Vector2 crouchedSize;
+    [SerializeField] private Sprite normal;
+    [SerializeField] private Sprite crouch;
+    private SpriteRenderer spriteRenderer;
 
     [Header ("Coyote Jump")]
     [SerializeField] private float coyoteTime; // How much time the player can stay in the air and allow to jump
@@ -23,23 +33,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private LayerMask propsLayer;
 
+    [Header ("Crouching")]
+    [SerializeField] private float crouchingSpeed;
+    private bool isCrouching;
+    
     private Rigidbody2D body;
     private Animator anim;
-    private BoxCollider2D boxCollider;
-    private float horizontalInput;
 
     [Header ("Audio")]
     [SerializeField] private AudioClip jumpSound;
 
     private void Awake() {
+        currentSpeed = baseSpeed;
         // References
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.sprite = normal;
+        normalSize = boxCollider.size;
     }
 
     private void Update() {
-
         horizontalInput = Input.GetAxis("Horizontal");
 
         // Adjust player character when moving left-right
@@ -52,6 +68,25 @@ public class PlayerMovement : MonoBehaviour
         // Set animator parameters
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
+
+        // Crouch
+        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) 
+            && canAttack()) {
+
+            spriteRenderer.sprite = crouch;
+            boxCollider.size = crouchedSize;
+            isCrouching = true;
+            currentSpeed = crouchingSpeed;
+            anim.SetBool("crouch", isCrouching);
+        }
+
+        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)){
+            spriteRenderer.sprite = normal;
+            boxCollider.size = normalSize;
+            isCrouching = false;
+            currentSpeed = baseSpeed;
+            anim.SetBool("crouch", isCrouching);
+        }        
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -68,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
             body.velocity = Vector2.zero;
         } else {
             body.gravityScale = 7;
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            body.velocity = new Vector2(horizontalInput * currentSpeed, body.velocity.y);
 
             if (isGrounded()) {
                 coyoteCounter = coyoteTime;
