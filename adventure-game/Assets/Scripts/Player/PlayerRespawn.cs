@@ -25,7 +25,10 @@ public class PlayerRespawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.transform.tag == "Checkpoint") {
+            // Assign new checkpoint to the latest one
             currentCheckpoint = collider.transform;
+            
+            // Play sound and animation
             SoundManager.instance.PlaySound(checkpointSound);
             collider.GetComponent<Collider2D>().enabled = false;
             collider.GetComponent<Animator>().SetTrigger("appear");

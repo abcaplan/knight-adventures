@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header ("Crouching")]
     [SerializeField] private float crouchingSpeed;
-    private bool isCrouching;
+    public bool isCrouching { get; private set; }
     
     private Rigidbody2D body;
     private Animator anim;
@@ -72,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
         // Crouch
         if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) 
             && canAttack()) {
-
             spriteRenderer.sprite = crouch;
             boxCollider.size = crouchedSize;
             isCrouching = true;

@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void Update() {
-        if (cooldownTimer > attackCooldown && playerMovement.canAttack()) {
+        if (cooldownTimer > attackCooldown && playerMovement.canAttack() && !playerMovement.isCrouching) {
             if (Input.GetKey(KeyCode.J)) {
                 SwordAttack();
             } else if (Input.GetKey(KeyCode.K)) {
