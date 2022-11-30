@@ -2085,7 +2085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1313441982
 Transform:
   m_ObjectHideFlags: 0
@@ -55794,7 +55794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1797565180720578929, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1797565180720578934, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
       propertyPath: m_RootOrder
@@ -55802,7 +55802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1797565180720578934, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.075123
+      value: -4.51
       objectReference: {fileID: 0}
     - target: {fileID: 1797565180720578934, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -55848,6 +55848,10 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 8590799148184966393}
+    - target: {fileID: 1797565181636409024, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1797565180720578934, guid: f75f661f63e84be4790241fc5e460cf3, type: 3}
@@ -55865,6 +55869,10 @@ PrefabInstance:
     - target: {fileID: 2960376060551815205, guid: 34bdb6e02fc69794ea9f627320d99419, type: 3}
       propertyPath: m_Name
       value: ArrowTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960376060551815205, guid: 34bdb6e02fc69794ea9f627320d99419, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2960376060551815226, guid: 34bdb6e02fc69794ea9f627320d99419, type: 3}
       propertyPath: m_RootOrder
@@ -56104,7 +56112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657991832974598270, guid: 1c501a4b88190114199c4b7affcd75b1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6813768538750409933, guid: 1c501a4b88190114199c4b7affcd75b1, type: 3}
       propertyPath: m_RootOrder
@@ -56349,6 +56357,10 @@ PrefabInstance:
     - target: {fileID: 7922933531450217464, guid: bde44b13d2cdffc48b1fffba36bcc935, type: 3}
       propertyPath: m_Name
       value: SpikeHeadGolden
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922933531450217464, guid: bde44b13d2cdffc48b1fffba36bcc935, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7922933531450217465, guid: bde44b13d2cdffc48b1fffba36bcc935, type: 3}
       propertyPath: m_RootOrder

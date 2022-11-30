@@ -3,10 +3,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header ("Player Stats")]
-    [SerializeField] private float baseSpeed;
+    [SerializeField] public float baseSpeed;
     [SerializeField] private float jumpPower;
     private float horizontalInput;
-    private float currentSpeed;
+    public float currentSpeed;
 
     [Header ("Collider & Size")]
     private BoxCollider2D boxCollider;
@@ -69,9 +69,8 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
 
-        // Crouch
-        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) 
-            && canAttack()) {
+        // Crouch Activation
+        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && canAttack()) {
             spriteRenderer.sprite = crouch;
             boxCollider.size = crouchedSize;
             isCrouching = true;
@@ -79,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("crouch", isCrouching);
         }
 
+        // Crouch Deactivation
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)){
             spriteRenderer.sprite = normal;
             boxCollider.size = normalSize;

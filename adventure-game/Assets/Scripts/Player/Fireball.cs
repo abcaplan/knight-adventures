@@ -4,7 +4,7 @@ public class Fireball : MonoBehaviour
 {
     [Header ("Fireball Attributes")]
     [SerializeField] private float speed;
-    [SerializeField] private int resetTime;
+    [SerializeField] private int resetTravelDuration;
     private float direction;
     private bool hit;
     private float lifetime;
@@ -27,7 +27,7 @@ public class Fireball : MonoBehaviour
         transform.Translate(travelSpeed, 0, 0);
 
         lifetime += Time.deltaTime;
-        if (lifetime > resetTime) {
+        if (lifetime > resetTravelDuration) {
             gameObject.SetActive(false);
         }
     }

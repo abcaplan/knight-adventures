@@ -1,12 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
     [Header ("Attributes")]
-    [SerializeField] private float attackCooldown;
+    [SerializeField] private float actionCooldown;
     [SerializeField] private GameObject attackArea;
+    [SerializeField] private GameObject blockArea;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
+
     private bool attacking = false;
     public bool blocking = false;
     private Animator anim;
@@ -23,22 +26,42 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void Update() {
-        if (cooldownTimer > attackCooldown && playerMovement.canAttack() && !playerMovement.isCrouching) {
+        if (cooldownTimer > actionCooldown && playerMovement.canAttack() && !playerMovement.isCrouching && !blocking) {
             if (Input.GetKey(KeyCode.J)) {
                 SwordAttack();
             } else if (Input.GetKey(KeyCode.K)) {
                 FireballAttack();
-            } else if (Input.GetKey(KeyCode.L)) {
-                BlockAttack();
             }
+        }
+
+        // Block Action
+        if (Input.GetKey(KeyCode.L) && cooldownTimer > actionCooldown && playerMovement.canAttack() && !playerMovement.isCrouching) {
+            blocking = true;
+            anim.SetBool("blockAttack", blocking);
+            cooldownTimer = 0;
+            blockArea.SetActive(true);
+
+            // Slow player movement while blocking is active
+            playerMovement.currentSpeed = 2;
+        }
+
+        // Disable Block Animation
+        if (Input.GetKeyUp(KeyCode.L)){
+            blocking = false;
+            anim.SetBool("blockAttack", blocking);
+            blockArea.SetActive(false);
+
+            // Re-enable full speed when no longer blocking
+            playerMovement.currentSpeed = playerMovement.baseSpeed;
         }
 
         cooldownTimer += Time.deltaTime;
 
         // Adjust cooldown for ranged attacks, melee attacks and sword blocks
-        if (attacking && cooldownTimer >= attackCooldown) {
+        if (attacking && cooldownTimer >= actionCooldown) {
             cooldownTimer = 0;
             attacking = false;
+            blocking = false;
 
             // Deactivate sword damage range
             attackArea.SetActive(attacking);
@@ -52,14 +75,6 @@ public class PlayerAttack : MonoBehaviour
         cooldownTimer = 0;
 
         attackArea.SetActive(attacking);
-    }
-
-    private void BlockAttack() {
-        // Incomplete
-        attacking = true;
-        blocking = true;
-        anim.SetTrigger("blockAttack");
-        cooldownTimer = 0;
     }
 
     private void FireballAttack() {
@@ -79,5 +94,13 @@ public class PlayerAttack : MonoBehaviour
                 return i;
         }
         return 0;
+    }
+
+    // For testing
+    void OnGUI() {
+        if (true) {
+            GUI.Label(new Rect(0, 0, 256, 32), "Is Blocking: " + blocking.ToString());
+            GUI.Label(new Rect(0, 16, 256, 32), "Is Crouching: " + playerMovement.isCrouching.ToString());
+        }
     }
 }

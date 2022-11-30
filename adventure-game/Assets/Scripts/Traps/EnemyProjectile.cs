@@ -4,7 +4,7 @@ public class EnemyProjectile : EnemyDamage
 {
     [Header ("Attributes")]
     [SerializeField] private float speed;
-    [SerializeField] private float resetTime;
+    [SerializeField] private float resetTravelDuration;
     private float lifetime;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -31,7 +31,7 @@ public class EnemyProjectile : EnemyDamage
         transform.Translate(movementSpeed, 0, 0);
 
         lifetime += Time.deltaTime;
-        if (lifetime > resetTime) {
+        if (lifetime > resetTravelDuration) {
             gameObject.SetActive(false);
         }
     }

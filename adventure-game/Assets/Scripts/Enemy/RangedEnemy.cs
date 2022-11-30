@@ -5,14 +5,14 @@ public class RangedEnemy : MonoBehaviour
     [Header ("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private int damage;
-    [SerializeField] private float range;
+    [SerializeField] private float range; // Change range and colliderDistance for distance to attack
 
     [Header ("Fireball Attack")]
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
 
     [Header ("Collider Parameters")]
-    [SerializeField] private float colliderDistance;
+    [SerializeField] private float colliderDistance; // Change range and colliderDistance for distance to attack
     [SerializeField] private BoxCollider2D boxCollider;
 
     [Header ("Player Layer")]
@@ -54,7 +54,7 @@ public class RangedEnemy : MonoBehaviour
 
     private int FindFireball() {
         for (int i =0; i< fireballs.Length; i++) {
-            if (fireballs[i].activeInHierarchy) {
+            if (!fireballs[i].activeInHierarchy) {
                 return i;
             }
         }

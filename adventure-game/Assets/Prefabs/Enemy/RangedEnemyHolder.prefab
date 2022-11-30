@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
-  character: {fileID: 3425985639479009081}
   immuneDuration: 0
   flashes: 0
   components:
@@ -171,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 1
   damage: 1
-  range: 15
+  range: 20
   firePoint: {fileID: 6391502353061551629}
   fireballs:
   - {fileID: 7892164501659398553}
@@ -184,7 +183,7 @@ MonoBehaviour:
   - {fileID: 7175875916267056282}
   - {fileID: 7175875916688297721}
   - {fileID: 7175875914988708770}
-  colliderDistance: 0.33
+  colliderDistance: 0.5
   boxCollider: {fileID: 3425985639479009075}
   playerLayer:
     serializedVersion: 2
@@ -227,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6391502353061551626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1, y: -0.95, z: 0}
+  m_LocalPosition: {x: 1.5, y: -0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -244,7 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6391502353454943100}
   m_Layer: 9
-  m_Name: RangeEnemyHolder
+  m_Name: RangedEnemyHolder
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
