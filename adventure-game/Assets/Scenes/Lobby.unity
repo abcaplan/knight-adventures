@@ -55647,7 +55647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: USE WASD TO MOVE
+  m_text: USE A-D TO MOVE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6330d6e18156b8447a17a49c3632c2b9, type: 2}
   m_sharedMaterial: {fileID: -8603687959505313629, guid: 6330d6e18156b8447a17a49c3632c2b9, type: 2}
