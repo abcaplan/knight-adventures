@@ -261,8 +261,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4209323614936431314}
-  - component: {fileID: 8440005321273826255}
   - component: {fileID: 9223169471670986240}
+  - component: {fileID: 8440005321273826255}
   m_Layer: 10
   m_Name: Spikes
   m_TagString: Trap
@@ -286,21 +286,8 @@ Transform:
   - {fileID: 4512956347209296458}
   - {fileID: 8769419628859542117}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8440005321273826255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772072435479867830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 018108725f01ab04f99bf60e31dfe5d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!61 &9223169471670986240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -327,3 +314,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8, y: 0.39}
   m_EdgeRadius: 0
+--- !u!114 &8440005321273826255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772072435479867830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018108725f01ab04f99bf60e31dfe5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

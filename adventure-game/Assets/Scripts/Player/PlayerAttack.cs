@@ -97,10 +97,12 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // For testing
+    /*
     void OnGUI() {
         if (true) {
             GUI.Label(new Rect(0, 0, 256, 32), "Is Blocking: " + blocking.ToString());
             GUI.Label(new Rect(0, 16, 256, 32), "Is Crouching: " + playerMovement.isCrouching.ToString());
         }
     }
+    */
 }
