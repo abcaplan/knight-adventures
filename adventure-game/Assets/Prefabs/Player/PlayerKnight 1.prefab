@@ -141,7 +141,7 @@ SpriteRenderer:
   m_SortingLayerID: 773065745
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5cfc8e09a9a6be647958e6f33e5337d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -232,14 +232,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 10
-  jumpPower: 24
+  jumpPower: 25
+  wallGravity: 20
+  currentSpeed: 0
   normalSize: {x: 1.1, y: 2.2}
   crouchedSize: {x: 1.1, y: 1.8}
   normal: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
   crouch: {fileID: 21300000, guid: 852ed71025819974eaee06b652ba82bb, type: 3}
   coyoteTime: 0.25
   wallJumpX: 3000
-  wallJumpY: 1000
+  wallJumpY: 1500
   extraJumps: 0
   groundLayer:
     serializedVersion: 2
@@ -250,7 +252,10 @@ MonoBehaviour:
   propsLayer:
     serializedVersion: 2
     m_Bits: 4096
-  crouchingSpeed: 6
+  crouchingSpeed: 5
+  dashingPower: 40
+  dashingTime: 0.2
+  dashingCooldown: 1
   jumpSound: {fileID: 8300000, guid: 8de05b102a0661646a879cbdfd245e33, type: 3}
 --- !u!114 &8839596234248299393
 MonoBehaviour:
@@ -279,6 +284,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerSpeedBlocking: 7
   blocking: 0
   cooldownTimer: Infinity
   fireballSound: {fileID: 8300000, guid: 8115a86a60280ad4796bd678631f76b4, type: 3}
@@ -415,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8839596234750280708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: -1, z: 0}
+  m_LocalPosition: {x: 2, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

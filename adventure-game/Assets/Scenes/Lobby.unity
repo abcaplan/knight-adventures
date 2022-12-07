@@ -68241,6 +68241,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8839596234248299392, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
+      propertyPath: tr
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839596234248299392, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
+      propertyPath: dashingPower
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839596234248299392, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
+      propertyPath: startDashingTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8839596234248299393, guid: a3f497f0ceed93549994023a68f5e804, type: 3}
       propertyPath: fireballs.Array.data[0]
       value: 

@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject blockArea;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
+    [SerializeField] private float playerSpeedBlocking;
 
     private bool attacking = false;
     public bool blocking = false;
@@ -42,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
             blockArea.SetActive(true);
 
             // Slow player movement while blocking is active
-            playerMovement.currentSpeed = 2;
+            playerMovement.currentSpeed = playerSpeedBlocking;
         }
 
         // Disable Block Animation
