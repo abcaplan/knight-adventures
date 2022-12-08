@@ -9,11 +9,13 @@ TagManager:
   - Enemy
   - Trap
   - Checkpoint
+  - SwordRange
+  - PlayerFireball
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ceiling
   - Water
   - UI
   - Ground

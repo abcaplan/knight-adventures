@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int flashes;
     private SpriteRenderer spriteRend;
 
-    [Header ("Components")]
+    [Header ("Scripts To Disable")]
     [SerializeField] private Behaviour[] components;
     private bool immunity;
 

@@ -6875,9 +6875,9 @@ GameObject:
   - component: {fileID: 1238266770}
   - component: {fileID: 1238266772}
   - component: {fileID: 1238266771}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Ceiling
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
