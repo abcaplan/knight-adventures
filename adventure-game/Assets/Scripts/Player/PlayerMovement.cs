@@ -46,12 +46,16 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private bool isDashing = false;
 
+    [Header ("Audio")]
+    [SerializeField] private AudioClip jumpSound;
+
+    [Header ("Particle System")]
+    [SerializeField] private ParticleSystem dust;
     
     private Rigidbody2D body;
     private Animator anim;
 
-    [Header ("Audio")]
-    [SerializeField] private AudioClip jumpSound;
+
 
     private void Awake() {
         currentSpeed = baseSpeed;
@@ -75,11 +79,13 @@ public class PlayerMovement : MonoBehaviour
 
         // Adjust player character when moving left-right
         if (horizontalInput > 0.01f) {
+            CreateDust();
             transform.localScale = Vector3.one;
         } else if (horizontalInput < -0.01f) {
+            CreateDust();
             transform.localScale = new Vector3(-1, 1, 1);
         }
-
+        
         // Set animator parameters
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
@@ -196,6 +202,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canAttack() {
         return horizontalInput < 0.75f && horizontalInput > -0.75f && isGrounded() && !onWall();
+    }
+
+    private void CreateDust(){
+        dust.Play();
     }
 
     // For testing
