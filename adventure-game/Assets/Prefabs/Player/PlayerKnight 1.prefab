@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 8839596234447393806}
   m_Layer: 8
   m_Name: SwordArea
-  m_TagString: Untagged
+  m_TagString: SwordRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
