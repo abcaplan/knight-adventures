@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float wallGravity;
     private float horizontalInput;
     public float currentSpeed;
-    private bool movingLeft;
 
     [Header ("Collider & Size")]
     private BoxCollider2D boxCollider;
@@ -77,10 +76,8 @@ public class PlayerMovement : MonoBehaviour
         // Adjust player character when moving left-right
         if (horizontalInput > 0.01f) {
             transform.localScale = Vector3.one;
-            movingLeft = false;
         } else if (horizontalInput < -0.01f) {
             transform.localScale = new Vector3(-1, 1, 1);
-            movingLeft = true;
         }
 
         // Set animator parameters

@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 8839596234248299393}
   - component: {fileID: 7505016356497500816}
   - component: {fileID: 8839596234248299398}
+  - component: {fileID: 8076089893946485553}
   m_Layer: 8
   m_Name: PlayerKnight 1
   m_TagString: Player
@@ -253,7 +254,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   crouchingSpeed: 5
-  dashingPower: 40
+  dashingPower: 30
   dashingTime: 0.2
   dashingCooldown: 1
   jumpSound: {fileID: 8300000, guid: 8de05b102a0661646a879cbdfd245e33, type: 3}
@@ -322,6 +323,19 @@ MonoBehaviour:
   - {fileID: 8839596234248299393}
   deathSound: {fileID: 8300000, guid: 5c32a6eeb0fe73f4bb4ab5ac3c93c182, type: 3}
   hurtSound: {fileID: 8300000, guid: 8e980ce3866458d488cf4982a8b3508a, type: 3}
+--- !u!114 &8076089893946485553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8839596234248299400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2814efe5f95145f4fa2b134081f37b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
 --- !u!1 &8839596234447393804
 GameObject:
   m_ObjectHideFlags: 0
