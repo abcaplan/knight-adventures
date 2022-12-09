@@ -25,10 +25,6 @@ public class EnemyPatrol : MonoBehaviour
         initScale = enemy.localScale;
     }
 
-    private void OnDisable() {
-        anim.SetBool("moving", false);
-    }
-
     private void Update() {
         if (movingLeft) {
             if (enemy.position.x >= leftEdge.position.x) {
@@ -43,11 +39,9 @@ public class EnemyPatrol : MonoBehaviour
                 ChangeDirection();
             }
         }
-         
     }
 
     private void MoveInDirection (int _direction) {
-
         idleTimer = 0;
         anim.SetBool("moving", true);
 
@@ -61,14 +55,15 @@ public class EnemyPatrol : MonoBehaviour
     }
 
     private void ChangeDirection() {
-
         anim.SetBool("moving", false);
-
-        idleTimer =+ Time.deltaTime;
+        idleTimer += Time.deltaTime;
 
         if(idleTimer > idleDuration) {
             movingLeft = !movingLeft;
         }
-        movingLeft = !movingLeft;
+    }
+
+    private void OnDisable() {
+        anim.SetBool("moving", false);
     }
 }

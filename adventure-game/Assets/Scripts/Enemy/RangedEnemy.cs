@@ -45,6 +45,7 @@ public class RangedEnemy : MonoBehaviour
             enemyPatrol.enabled = !CanSeePlayer();
         }
     }
+
     private void FireballAttack() {
         SoundManager.instance.PlaySound(fireballSound);
         cooldownTimer = 0;
@@ -73,5 +74,4 @@ public class RangedEnemy : MonoBehaviour
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
          new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
-
 }
