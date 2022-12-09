@@ -80,10 +80,10 @@ public class PlayerMovement : MonoBehaviour
         // Adjust player character when moving left-right
         if (horizontalInput > 0.01f) {
             CreateDust();
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector2(1, 1);
         } else if (horizontalInput < -0.01f) {
             CreateDust();
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1);
         }
         
         // Set animator parameters
