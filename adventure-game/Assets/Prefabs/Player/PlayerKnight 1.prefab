@@ -5050,6 +5050,7 @@ MonoBehaviour:
   baseSpeed: 10
   jumpPower: 25
   wallGravity: 20
+  normalGravity: 7
   currentSpeed: 0
   normalSize: {x: 1.1, y: 2.2}
   crouchedSize: {x: 1.1, y: 1.8}
@@ -5058,7 +5059,6 @@ MonoBehaviour:
   coyoteTime: 0.25
   wallJumpX: 3000
   wallJumpY: 1500
-  extraJumps: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -5068,10 +5068,19 @@ MonoBehaviour:
   propsLayer:
     serializedVersion: 2
     m_Bits: 4096
-  crouchingSpeed: 5
+  iceLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  mudLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  crouchingSpeed: 7.5
   dashingPower: 30
   dashingTime: 0.2
   dashingCooldown: 1
+  iceSpeed: 26
+  mudSpeed: 8
+  iceGravity: 4
   jumpSound: {fileID: 8300000, guid: 8de05b102a0661646a879cbdfd245e33, type: 3}
   dust: {fileID: 7992209949239611594}
 --- !u!114 &8839596234248299393

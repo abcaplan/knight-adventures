@@ -613,7 +613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &153066497
 Transform:
   m_ObjectHideFlags: 0
@@ -1133,8 +1133,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 44, y: 4}
-  m_SizeDelta: {x: 370, y: 280}
+  m_AnchoredPosition: {x: 50, y: -0.9}
+  m_SizeDelta: {x: 383, y: 290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411981400
 MonoBehaviour:
@@ -1169,6 +1169,8 @@ MonoBehaviour:
 
     FIREBALL - K
 
+    DASH - N
+
     BLOCK - L'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6330d6e18156b8447a17a49c3632c2b9, type: 2}
@@ -1196,7 +1198,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.1
+  m_fontSize: 30.9
   m_fontSizeBase: 66
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3669,7 +3671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1257271389
 Transform:
   m_ObjectHideFlags: 0

@@ -7,8 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float baseSpeed;
     [SerializeField] private float jumpPower;
     [SerializeField] private float wallGravity;
-    private float horizontalInput;
+    [SerializeField] private float normalGravity;
     public float currentSpeed;
+    private float horizontalInput;
 
     [Header ("Collider & Size")]
     private BoxCollider2D boxCollider;
@@ -27,13 +28,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float wallJumpY; // Vertical Wall Jump force
 
     [Header ("Multiple Jumps")]
-    [SerializeField] private int extraJumps;
+    [System.NonSerialized] public int extraJumps;
     private int jumpCounter;
     
     [Header ("Layers")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private LayerMask propsLayer;
+    [SerializeField] private LayerMask iceLayer;
+    [SerializeField] private LayerMask mudLayer;
 
     [Header ("Crouching")]
     [SerializeField] private float crouchingSpeed;
@@ -46,6 +49,11 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private bool isDashing = false;
 
+    [Header ("Terrain Stats Changes")]
+    [SerializeField] private float iceSpeed;
+    [SerializeField] private float mudSpeed;
+    [SerializeField] private float iceGravity;
+
     [Header ("Audio")]
     [SerializeField] private AudioClip jumpSound;
 
@@ -54,8 +62,6 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody2D body;
     private Animator anim;
-
-
 
     private void Awake() {
         currentSpeed = baseSpeed;
@@ -95,7 +101,6 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sprite = crouch;
             boxCollider.size = crouchedSize;
             isCrouching = true;
-            currentSpeed = crouchingSpeed;
             anim.SetBool("crouch", isCrouching);
         }
 
@@ -104,7 +109,6 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sprite = normal;
             boxCollider.size = normalSize;
             isCrouching = false;
-            currentSpeed = baseSpeed;
             anim.SetBool("crouch", isCrouching);
         }
 
@@ -130,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         } else {
             // Prevent velocity and gravity change during dashing
             if (!isDashing){
-                body.gravityScale = 7;
+                body.gravityScale = normalGravity;
                 body.velocity = new Vector2(horizontalInput * currentSpeed, body.velocity.y);
             }
 
@@ -140,6 +144,20 @@ public class PlayerMovement : MonoBehaviour
             } else {
                 coyoteCounter -= Time.deltaTime;
             }
+        }
+        // Adjust speed when on ice/mud
+        if (isOnIce() && !isCrouching){
+            currentSpeed = iceSpeed;
+            body.gravityScale = iceGravity;
+        } else if (isOnMud() && !isCrouching){
+            currentSpeed = mudSpeed;
+            body.gravityScale = normalGravity;
+        } else if (isCrouching){
+            currentSpeed = crouchingSpeed;
+            body.gravityScale = normalGravity;
+        } else {
+            currentSpeed = baseSpeed;
+            body.gravityScale = normalGravity;
         }
     }
 
@@ -192,7 +210,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded() {
         RaycastHit2D raycastHitGround = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer); // under the player is ground layer
         RaycastHit2D raycastHitProps = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, propsLayer); // under the player is any prop layer
-        return (raycastHitGround.collider != null) || (raycastHitProps.collider != null);
+        RaycastHit2D raycastHitIce = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, iceLayer); // under the player is ice
+        RaycastHit2D raycastHitMud = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, mudLayer); // under the player is mud
+        return (raycastHitGround.collider != null) || (raycastHitProps.collider != null) || (raycastHitIce.collider != null) || (raycastHitMud.collider != null);
     }
 
     private bool onWall() {
@@ -208,14 +228,25 @@ public class PlayerMovement : MonoBehaviour
         dust.Play();
     }
 
+    private bool isOnIce() {
+        RaycastHit2D raycastHitIce = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, iceLayer); // under the player is ice
+        return raycastHitIce.collider != null;
+    }
+
+    private bool isOnMud() {
+        RaycastHit2D raycastHitMud = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, mudLayer); // under the player is mud
+        return raycastHitMud.collider != null;
+    }
+
+
     // For testing
-    /*
+    
     void OnGUI() {
         if (true) {
-            GUI.Label(new Rect(0, 0, 256, 32), "Dashing: " + isDashing.ToString());
+            GUI.Label(new Rect(0, 0, 256, 32), "Ice: " + isOnIce().ToString());
             GUI.Label(new Rect(0, 16, 256, 32), "Gravity: " + body.gravityScale.ToString());
         }
     }
-    */
+    
     
 }

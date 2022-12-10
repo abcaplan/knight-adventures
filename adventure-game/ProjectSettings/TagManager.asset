@@ -11,6 +11,7 @@ TagManager:
   - Checkpoint
   - SwordRange
   - PlayerFireball
+  - Props
   layers:
   - Default
   - TransparentFX
@@ -25,8 +26,8 @@ TagManager:
   - Trap
   - Fireball Projectile
   - Props
-  - 
-  - 
+  - Ice
+  - Mud
   - 
   - 
   - 
