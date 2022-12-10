@@ -28,7 +28,7 @@ public class LoadLevelManager : MonoBehaviour
         SceneManager.LoadScene(indexLevelToLoad);
     }
 
-    
+    /*
     void OnGUI() {
         if (true) {
             GUI.Label(new Rect(0, 0, 256, 32), "1: " + level1.ToString());
@@ -36,4 +36,5 @@ public class LoadLevelManager : MonoBehaviour
             GUI.Label(new Rect(0, 32, 256, 32), "3: " + level3.ToString());
         }
     }
+    */
 }

@@ -13,12 +13,17 @@ public class Collectable : MonoBehaviour
     }    
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        GameObject collider = collision.gameObject;
         if (collision.gameObject.tag == "Player") {
             playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
             playerMovement.AddScore(score);
             boxCollider.enabled = false;
             SoundManager.instance.PlaySound(collectItem);
             anim.SetTrigger("destroy");
+
+            if (collision.otherCollider.tag == "Melon") {
+                playerMovement.AddMelonPowerUp();
+            }
         }
     }
 

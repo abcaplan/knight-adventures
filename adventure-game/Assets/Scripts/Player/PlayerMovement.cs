@@ -9,10 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private float wallGravity;
     [SerializeField] private float normalGravity;    
-    [SerializeField] private TMP_Text scoreText;
     private int score = 0;
     public float currentSpeed;
     private float horizontalInput;
+
+    [Header ("Text")]
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text powerUpText;
 
     [Header ("Collider & Size")]
     private BoxCollider2D boxCollider;
@@ -31,8 +34,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float wallJumpY; // Vertical Wall Jump force
 
     [Header ("Multiple Jumps")]
-    [System.NonSerialized] public int extraJumps;
+    [SerializeField] private float extraJumpsDuration;
+    public int extraJumps;
     private int jumpCounter;
+    private bool isExtraJumps = false;
+    private float extraJumpsTime = 0;
     
     [Header ("Layers")]
     [SerializeField] private LayerMask groundLayer;
@@ -82,6 +88,15 @@ public class PlayerMovement : MonoBehaviour
     private void Update() {
         // Update score
         scoreText.text = "Score: " + score;
+
+        // Make Power Up Text Appear
+        extraJumpsTime = Mathf.Max(0.0f, extraJumpsTime - Time.deltaTime);
+        if (isExtraJumps) {
+            powerUpText.gameObject.SetActive(true);
+            powerUpText.text = "Extra Jump: " + Mathf.Round(extraJumpsTime).ToString() + " seconds";
+        } else {
+            powerUpText.gameObject.SetActive(false);
+        }
 
         // Stop any player movement while dashing to avoid bugs
         if (isDashing) {
@@ -154,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
                 coyoteCounter -= Time.deltaTime;
             }
         }
+
         // Adjust speed when on ice/mud
         if (isOnIce() && !isCrouching){
             currentSpeed = iceSpeed;
@@ -168,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = baseSpeed;
             //body.gravityScale = normalGravity;
         }
+
     }
 
     private void Jump() {
@@ -210,6 +227,15 @@ public class PlayerMovement : MonoBehaviour
         
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    private IEnumerator ExtraJumpsTime() {
+        extraJumpsTime = extraJumpsDuration;
+        extraJumps = 1;
+        isExtraJumps = true;
+        yield return new WaitForSeconds(extraJumpsDuration);
+        isExtraJumps = false;
+        extraJumps = 0;
     }
 
     private void WallJump() {
@@ -257,13 +283,17 @@ public class PlayerMovement : MonoBehaviour
         score += _score;
     }
 
+    public void AddMelonPowerUp() {
+        StartCoroutine(ExtraJumpsTime());
+    }
+
     // For testing
-    /*
+    
     void OnGUI() {
         if (true) {
-            GUI.Label(new Rect(0, 0, 256, 32), "Ice: " + isOnIce().ToString());
-            GUI.Label(new Rect(0, 16, 256, 32), "Ice GRavity: " + iceGravity.ToString());
+            GUI.Label(new Rect(0, 0, 256, 32), "jumps: " + extraJumps.ToString());
+            GUI.Label(new Rect(0, 16, 256, 32), "jumps time: " + extraJumpsDuration.ToString());
         }
     }
-    */
+    
 }
