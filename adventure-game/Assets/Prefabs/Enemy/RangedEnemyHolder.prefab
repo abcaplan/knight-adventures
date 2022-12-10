@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3425985639479009076}
   - component: {fileID: 3425985639479009083}
   - component: {fileID: 1007157193858832672}
+  - component: {fileID: 4182987351334022488}
   m_Layer: 9
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -202,6 +203,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &4182987351334022488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425985639479009081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8208404192f64398b09bbb1eab21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectable: {fileID: 6109824252701028583, guid: f671764531c57384391e772fbef67452, type: 3}
+  enemy: {fileID: 3425985639479009081}
+  dropChance: 50
 --- !u!1 &6391502353061551626
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +280,7 @@ Transform:
   - {fileID: 3425985639479009080}
   - {fileID: 6391502353624217873}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6391502353624217870
 GameObject:

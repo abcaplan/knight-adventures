@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1037100713961184967}
   - component: {fileID: 1037100713961184966}
   - component: {fileID: 6965519156935654801}
+  - component: {fileID: 3345168967282735142}
   m_Layer: 9
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1037100713961184965
 SpriteRenderer:
@@ -148,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 5
-  character: {fileID: 1037100713961184970}
   immuneDuration: 0
   flashes: 0
   components:
@@ -189,3 +189,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &3345168967282735142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037100713961184970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8208404192f64398b09bbb1eab21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectable: {fileID: 2915808273087965079, guid: 011d149fad4c1114982d0d785433dcbb, type: 3}
+  enemy: {fileID: 1037100713961184970}
+  dropChance: 50

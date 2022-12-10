@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7231144505929328956}
   - component: {fileID: 7231144505929328954}
   - component: {fileID: 7231144505929328955}
+  - component: {fileID: 3578024513336298315}
   m_Layer: 9
   m_Name: FlyingEnemyBird
   m_TagString: Enemy
@@ -37,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7231144505929328952
 SpriteRenderer:
@@ -224,3 +225,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &3578024513336298315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231144505929328947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8208404192f64398b09bbb1eab21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectable: {fileID: 8221002468191057296, guid: 223c6a6512cd5874b8960c22525a42b7, type: 3}
+  enemy: {fileID: 7231144505929328947}
+  dropChance: 25

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float baseSpeed;
     [SerializeField] private float jumpPower;
     [SerializeField] private float wallGravity;
-    [SerializeField] private float normalGravity;
+    [SerializeField] private float normalGravity;    
+    [SerializeField] private TMP_Text scoreText;
+    private int score = 0;
     public float currentSpeed;
     private float horizontalInput;
 
@@ -76,6 +79,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update() {
+        // Update score
+        scoreText.text = "Score: " + score;
+
         // Stop any player movement while dashing to avoid bugs
         if (isDashing) {
             return;
@@ -238,15 +244,19 @@ public class PlayerMovement : MonoBehaviour
         return raycastHitMud.collider != null;
     }
 
+    public void AddScore(int _score) {
+        score += _score;
+    }
 
     // For testing
-    
+    /*
     void OnGUI() {
         if (true) {
             GUI.Label(new Rect(0, 0, 256, 32), "Ice: " + isOnIce().ToString());
             GUI.Label(new Rect(0, 16, 256, 32), "Gravity: " + body.gravityScale.ToString());
         }
     }
+    */
     
     
 }
