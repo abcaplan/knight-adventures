@@ -4,6 +4,7 @@ public class Collectable : MonoBehaviour
 {    
     [SerializeField] private int score;
     [SerializeField] private AudioClip collectItem;
+    [SerializeField] private BoxCollider2D boxCollider;
     private PlayerMovement playerMovement;
     private Animator anim;
   
@@ -15,6 +16,7 @@ public class Collectable : MonoBehaviour
         if (collision.gameObject.tag == "Player") {
             playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
             playerMovement.AddScore(score);
+            boxCollider.enabled = false;
             SoundManager.instance.PlaySound(collectItem);
             anim.SetTrigger("destroy");
         }

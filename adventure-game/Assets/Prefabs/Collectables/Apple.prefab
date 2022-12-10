@@ -169,3 +169,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 100
   collectItem: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  boxCollider: {fileID: 2915808273087965075}

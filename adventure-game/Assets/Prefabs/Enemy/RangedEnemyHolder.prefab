@@ -154,7 +154,6 @@ MonoBehaviour:
   flashes: 0
   components:
   - {fileID: 3425985639479009083}
-  - {fileID: 0}
   deathSound: {fileID: 8300000, guid: 5c32a6eeb0fe73f4bb4ab5ac3c93c182, type: 3}
   hurtSound: {fileID: 8300000, guid: 8e980ce3866458d488cf4982a8b3508a, type: 3}
 --- !u!114 &3425985639479009083

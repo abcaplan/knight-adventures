@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask propsLayer;
     [SerializeField] private LayerMask iceLayer;
     [SerializeField] private LayerMask mudLayer;
+    [SerializeField] private LayerMask ceilingLayer;
 
     [Header ("Crouching")]
     [SerializeField] private float crouchingSpeed;
@@ -112,10 +113,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Crouch Deactivation
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)){
-            spriteRenderer.sprite = normal;
-            boxCollider.size = normalSize;
-            isCrouching = false;
-            anim.SetBool("crouch", isCrouching);
+            if (!hasCollisionAbovePlayer()) {
+                spriteRenderer.sprite = normal;
+                boxCollider.size = normalSize;
+                isCrouching = false;
+                anim.SetBool("crouch", isCrouching);
+            }
         }
 
         // Dash
@@ -154,16 +157,16 @@ public class PlayerMovement : MonoBehaviour
         // Adjust speed when on ice/mud
         if (isOnIce() && !isCrouching){
             currentSpeed = iceSpeed;
-            body.gravityScale = iceGravity;
+            //body.gravityScale = iceGravity;
         } else if (isOnMud() && !isCrouching){
             currentSpeed = mudSpeed;
-            body.gravityScale = normalGravity;
+            //body.gravityScale = normalGravity;
         } else if (isCrouching){
             currentSpeed = crouchingSpeed;
-            body.gravityScale = normalGravity;
+            //body.gravityScale = normalGravity;
         } else {
             currentSpeed = baseSpeed;
-            body.gravityScale = normalGravity;
+            //body.gravityScale = normalGravity;
         }
     }
 
@@ -244,6 +247,12 @@ public class PlayerMovement : MonoBehaviour
         return raycastHitMud.collider != null;
     }
 
+    private bool hasCollisionAbovePlayer() {
+        RaycastHit2D raycastHitWall = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.up, 0.1f, wallLayer);
+        RaycastHit2D raycastHitCeiling = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.up, 0.1f, ceilingLayer);
+        return (raycastHitWall.collider != null) || (raycastHitCeiling.collider != null);
+    }
+
     public void AddScore(int _score) {
         score += _score;
     }
@@ -253,10 +262,8 @@ public class PlayerMovement : MonoBehaviour
     void OnGUI() {
         if (true) {
             GUI.Label(new Rect(0, 0, 256, 32), "Ice: " + isOnIce().ToString());
-            GUI.Label(new Rect(0, 16, 256, 32), "Gravity: " + body.gravityScale.ToString());
+            GUI.Label(new Rect(0, 16, 256, 32), "Ice GRavity: " + iceGravity.ToString());
         }
     }
     */
-    
-    
 }
