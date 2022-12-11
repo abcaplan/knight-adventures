@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Pathfinding;
 
 public class BreakableObject : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class BreakableObject : MonoBehaviour
         if (collider.tag == "PlayerFireball" || collider.tag == "SwordRange") {
 
             if (gameObject.tag == "Props") {
-                hit?.Invoke();
+                hit?.Invoke();                
             }
 
             if (gameObject.tag == "WeakBreakable") {
@@ -31,6 +32,12 @@ public class BreakableObject : MonoBehaviour
                 } else if(weakHits == 2) {
                     spriteRend.color = colorDarkRed;
                 } else if (weakHits == 3) {
+                    // Update A* pathfinding
+                    var guo = new GraphUpdateObject(collider.bounds); 
+                    guo.updatePhysics = true;
+                    AstarPath.active.UpdateGraphs (guo);
+
+                    // Break object
                     hit?.Invoke();
                     weakHits = 0;
                 }
@@ -45,6 +52,12 @@ public class BreakableObject : MonoBehaviour
                 } else if (strongHits == 4) {
                     spriteRend.color = colorDarkRed;
                 } else if (strongHits == 5) {
+                    // Update A* pathfinding
+                    var guo = new GraphUpdateObject(collider.bounds);
+                    guo.updatePhysics = true;
+                    AstarPath.active.UpdateGraphs (guo);
+
+                    // Break object
                     hit?.Invoke();
                     strongHits = 0;
                 }
