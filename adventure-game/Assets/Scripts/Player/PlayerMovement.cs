@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header ("Text")]
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text highscoreText;
     [SerializeField] private TMP_Text powerUpText;
 
     [Header ("Collider & Size")]
@@ -84,14 +85,10 @@ public class PlayerMovement : MonoBehaviour
 
         spriteRenderer.sprite = normal;
         normalSize = boxCollider.size;
+        UpdateHighscore();
     }
 
     private void Update() {
-        // Update highscore and score text
-        scoreText.text = "Score: " + score;
-        highscore = score;
-        PlayerPrefs.SetInt("highscore", highscore);
-
         // Make Power Up Text Appear
         extraJumpsTime = Mathf.Max(0.0f, extraJumpsTime - Time.deltaTime);
         if (isExtraJumps) {
@@ -284,19 +281,31 @@ public class PlayerMovement : MonoBehaviour
 
     public void AddScore(int _score) {
         score += _score;
+        scoreText.text = "SCORE: " + score.ToString();
+
+        if (score > highscore) {
+            highscore = score;
+            highscoreText.text = "HIGHSCORE: " + highscore.ToString();
+            PlayerPrefs.SetInt("highscore", score);
+        }
+    }
+
+    private void UpdateHighscore() {
+        if (PlayerPrefs.HasKey("highscore")){
+            highscore = PlayerPrefs.GetInt("highscore", 0);
+            scoreText.text = "SCORE: " + score.ToString();
+            highscoreText.text = "HIGHSCORE: " + highscore.ToString();
+        }
+    }
+
+    // Deletes the highscore kept locally
+    public void ResetHighscore() {
+        PlayerPrefs.DeleteKey("highscore");
+        highscore = 0;
+        highscoreText.text = highscore.ToString();
     }
 
     public void AddMelonPowerUp() {
         StartCoroutine(ExtraJumpsTime());
     }
-
-    // For testing
-    
-    void OnGUI() {
-        if (true) {
-            GUI.Label(new Rect(0, 0, 256, 32), "jumps: " + extraJumps.ToString());
-            GUI.Label(new Rect(0, 16, 256, 32), "jumps time: " + extraJumpsDuration.ToString());
-        }
-    }
-    
 }

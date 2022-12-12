@@ -27,14 +27,4 @@ public class LoadLevelManager : MonoBehaviour
     private void LoadLevel() {
         SceneManager.LoadScene(indexLevelToLoad);
     }
-
-    /*
-    void OnGUI() {
-        if (true) {
-            GUI.Label(new Rect(0, 0, 256, 32), "1: " + level1.ToString());
-            GUI.Label(new Rect(0, 16, 256, 32), "2: " + level2.ToString());
-            GUI.Label(new Rect(0, 32, 256, 32), "3: " + level3.ToString());
-        }
-    }
-    */
 }

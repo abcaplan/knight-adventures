@@ -5052,6 +5052,7 @@ MonoBehaviour:
   normalGravity: 7
   currentSpeed: 0
   scoreText: {fileID: 0}
+  highscoreText: {fileID: 0}
   powerUpText: {fileID: 0}
   normalSize: {x: 1.1, y: 2.2}
   crouchedSize: {x: 1.1, y: 1.8}
@@ -5116,7 +5117,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  playerSpeedBlocking: 7
+  playerSpeedBlocking: 4.5
   blocking: 0
   cooldownTimer: Infinity
   fireballSound: {fileID: 8300000, guid: 8115a86a60280ad4796bd678631f76b4, type: 3}
