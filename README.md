@@ -20,6 +20,7 @@ This project is developed by Bogdan-Alexandru Caplan for CSC3232 module within N
 ## References and packages used
 
 Unity Assets used in this game project:
+
 ● Player: https://assetstore.unity.com/packages/2d/characters/knight-sprite-sheet-free-93897
 
 ● Enemy character: https://assetstore.unity.com/packages/2d/characters/dragon-warrior-free-93896
