@@ -19,10 +19,15 @@ This project is developed by Bogdan-Alexandru Caplan for CSC3232 module within N
 
 ## References and packages used
 
-● Unity Assets used in this game project:
+Unity Assets used in this game project:
 ● Player: https://assetstore.unity.com/packages/2d/characters/knight-sprite-sheet-free-93897
+
 ● Enemy character: https://assetstore.unity.com/packages/2d/characters/dragon-warrior-free-93896
+
 ● Map and Objects: https://assetstore.unity.com/packages/2d/characters/pixel-adventure-1-155360
+
 ● In-Game Audio: https://gamesounds.xyz/?dir=No%20soap%20radio
+
 ● Sound Effects Audio: https://assetstore.unity.com/packages/audio/sound-fx/free-casual-game-sfx-pack-54116
+
 ● A* imported package: https://arongranberg.com/astar/docs_dev/index.php
