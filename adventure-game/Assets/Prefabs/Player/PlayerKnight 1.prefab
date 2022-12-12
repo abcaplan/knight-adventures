@@ -5060,7 +5060,7 @@ MonoBehaviour:
   coyoteTime: 0.25
   wallJumpX: 3000
   wallJumpY: 1500
-  extraJumpsTime: 30
+  extraJumpsDuration: 30
   extraJumps: 0
   groundLayer:
     serializedVersion: 2

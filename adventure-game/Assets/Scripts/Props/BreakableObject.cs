@@ -21,7 +21,11 @@ public class BreakableObject : MonoBehaviour
         if (collider.tag == "PlayerFireball" || collider.tag == "SwordRange") {
 
             if (gameObject.tag == "Props") {
-                hit?.Invoke();                
+                // Update A* pathfinding
+                UpdatePath(collider);
+
+                // Break object
+                hit?.Invoke();
             }
 
             if (gameObject.tag == "WeakBreakable") {
@@ -33,9 +37,7 @@ public class BreakableObject : MonoBehaviour
                     spriteRend.color = colorDarkRed;
                 } else if (weakHits == 3) {
                     // Update A* pathfinding
-                    var guo = new GraphUpdateObject(collider.bounds); 
-                    guo.updatePhysics = true;
-                    AstarPath.active.UpdateGraphs (guo);
+                    UpdatePath(collider);
 
                     // Break object
                     hit?.Invoke();
@@ -53,9 +55,7 @@ public class BreakableObject : MonoBehaviour
                     spriteRend.color = colorDarkRed;
                 } else if (strongHits == 5) {
                     // Update A* pathfinding
-                    var guo = new GraphUpdateObject(collider.bounds);
-                    guo.updatePhysics = true;
-                    AstarPath.active.UpdateGraphs (guo);
+                    UpdatePath(collider);
 
                     // Break object
                     hit?.Invoke();
@@ -64,5 +64,12 @@ public class BreakableObject : MonoBehaviour
                 strongHits++;
             }
         }
+    }
+
+    private void UpdatePath(Collider2D collider) {
+        // Update A* pathfinding
+        var guo = new GraphUpdateObject(collider.bounds);
+        guo.updatePhysics = true;
+        AstarPath.active.UpdateGraphs (guo);
     }
 }

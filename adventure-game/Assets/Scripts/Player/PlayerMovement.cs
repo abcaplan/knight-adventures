@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float wallGravity;
     [SerializeField] private float normalGravity;    
     private int score = 0;
+    private int highscore;
     public float currentSpeed;
     private float horizontalInput;
 
@@ -86,8 +87,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update() {
-        // Update score
+        // Update highscore and score text
         scoreText.text = "Score: " + score;
+        highscore = score;
+        PlayerPrefs.SetInt("highscore", highscore);
 
         // Make Power Up Text Appear
         extraJumpsTime = Mathf.Max(0.0f, extraJumpsTime - Time.deltaTime);
