@@ -3,7 +3,7 @@
 ## Ownership
 This project is developed by Bogdan-Alexandru Caplan for CSC3232 module within Newcastle University.
 
-# To properly start the game, open "Scenes" folder and select "MainMenu"
+### To properly start the game, open "Scenes" folder and select "MainMenu"
 
 ### Coursework
 
